@@ -1,6 +1,6 @@
-var iklan_title = 'Mathematics Challenge 2024';
-var iklan_desc = 'Mathematics Challenge 2024 diselenggarakan oleh HIMATIKA ULM. Olimpiade Matematika untuk seluruh siswa-siswi SMP se-Kalimantan dan SMA se-Indonesia. Segera daftarkan dirimu!';
-var iklan_link = 'https://mathematicschallenge.com';
+var iklan_title = 'Pemnas UB 2024';
+var iklan_desc = '';
+var iklan_link = 'https://pemnas.ub.ac.id/';
 
 $(document).on('turbolinks:load', function() {
   if ($('#iklan-lomba').length !== 0) {
