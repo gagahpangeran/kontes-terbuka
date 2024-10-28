@@ -38,7 +38,7 @@ var faq_data = [
   },
   {
     question: 'Jadi level kontesnya cuman ada satu ya?',
-    answer: 'Pada saat ini kontes kami baru menyediakan satu level soal saja. Namun, bisa saja di waktu berikutnya ada tambahan level soal yang lain. Pantau terus media sosial kami jika kami melakukan ekspansi!',
+    answer: 'Kontes biasa memang hanya satu level yaitu tingkat SMA, tetapi mulai tahun 2022 kami mengadakan simulasi OSP/OSN tingkat SMP. Pantau terus media sosial kami jika kami melakukan ekspansi!',
     category: 0,
   },
   {
