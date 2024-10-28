@@ -30,6 +30,7 @@ jobs:
         with:
           ruby-version: 2.5.3
       - run: | 
+          rvm install "ruby-2.5.3"
           bundle install
       - name: Deploy to production
         run: |
