@@ -30,10 +30,10 @@ jobs:
         with:
           ruby-version: 2.5.3
       - run: | 
-          rvm install "ruby-2.5.3"
           bundle install
       - name: Deploy to production
         run: |
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/github-actions
+          rvm install "ruby-2.5.3"
           bundle exec cap production deploy --trace
