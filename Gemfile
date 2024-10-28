@@ -6,7 +6,7 @@ git_source(:github) { |name| "https://github.com/#{name}.git" }
 ### BASICS
 
 # Ruby version
-ruby '2.5.3'
+ruby '2.5.0'
 # Rails version
 gem 'rails', '~> 4'
 # Use postgres as database
