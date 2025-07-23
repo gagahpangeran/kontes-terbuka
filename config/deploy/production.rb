@@ -6,6 +6,7 @@
 # You can define all roles on a single server, or split them:
 
 set :stage, :production
+set :branch, 'production'
 server '188.166.177.64', user: 'ktom', roles: %w[app db web]
 
 # role-based syntax

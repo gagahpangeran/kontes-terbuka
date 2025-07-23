@@ -5,7 +5,6 @@ lock '3.16.0'
 
 set :application, 'kontes-terbuka'
 set :repo_url, 'https://github.com/ktomatematika/kontes-terbuka.git'
-set :branch, 'production'
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/ktom/kontes-terbuka'
