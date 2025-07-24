@@ -47,7 +47,7 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security,
   # and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = ENV['IS_STAGING'].blank? # Dont force ssl on staging
 
   config.log_level = :info
 
@@ -84,7 +84,8 @@ Rails.application.configure do
   config.active_record.logger = nil
 
   Rails.application.routes
-       .default_url_options[:host] = 'https://ktom-tomi.or.id'
+       .default_url_options[:host] =
+    ENV['IS_STAGING'].present? ? 'http://24.144.110.0' : 'https://ktom-tomi.or.id'
 
   config.middleware.use ExceptionNotification::Rack,
                         mailgun: {},
