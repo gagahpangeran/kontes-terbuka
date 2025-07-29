@@ -30,7 +30,8 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.5.0
-      - run: | 
+          bundler-cache: true
+      - run: |
           bundle install --without production development
       - env:
           RAILS_ENV: test
@@ -52,6 +53,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.5.0
+          bundler-cache: true
       - run: | 
           bundle install --without production development
       - name: Run rubocop
