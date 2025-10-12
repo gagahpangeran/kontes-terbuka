@@ -8,7 +8,7 @@ name: Run test and rubocop
 
 on:
   pull_request:
-    branches: [production]
+    branches: [production, staging]
 
 jobs:
   test:
