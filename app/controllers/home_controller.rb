@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   skip_before_action :require_login, except: %i[index admin]
 
   def index
-    @current_contests = Contest.currently_in_contest.order(:end_time)
+    @next_important_contest = Contest.next_important_contest
     @prev_contests = Contest.where('end_time < ?', Time.zone.now)
                             .limit(8).order('end_time desc')
   end
