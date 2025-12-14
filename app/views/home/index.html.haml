@@ -1,66 +1,60 @@
-- if @current_contests.any?
-  = content_tag 'div', '', id: 'home-contest-data-list',
-    data: {
-      contests: @current_contests.map { |c|
-        {
-          name: c.name,
-          start_time: c.start_time,
-          end_time: UserContest.find_by(contest: c, user: current_user)&.end_time || c.end_time,
-          result_time: c.result_time,
-          feedback_time: c.feedback_time,
-          results_released: c.result_released
-        }
-      }.to_json
-    }
+= content_tag 'div', '', id: 'home-contest-data',
+  data: { name: @next_important_contest&.name,
+  start_time: @next_important_contest&.start_time,
+  end_time: UserContest.find_by(contest: @next_important_contest, user: current_user)&.end_time || @next_important_contest&.end_time,
+  result_time: @next_important_contest&.result_time,
+  feedback_time: @next_important_contest&.feedback_time,
+  results_released: @next_important_contest&.result_released }
 
-  %section.home-section#this-contest
-    %h2 Kontes yang sedang berjalan
-    - @current_contests.each do |contest|
-      %div.contest-block
-        %h3= contest.name
-        %h4= "#{contest.start_time.to_indo} – #{contest.end_time.to_indo}"
-        %a.btn.btn-lg.update-regularly{ type: 'button', href: url_for(contest) } Lihat Kontes
-- else
-  %section.home-section#this-contest
-    %h2 Tidak ada kontes yang sedang berjalan
+.container#home-container
 
-.row
-  .col-md-6.col-md-push-6
-    %section.home-section#info-kontes
-      %h2 Baru?
-      %p
-        #{link_to 'FAQ', faq_path} kami berisi banyak informasi mengenai
-        kontes-kontes kami.
-      %p
-        Anda juga bisa #{link_to 'membeli buku kami', book_path}
-        yang berisi kumpulan materi, soal, solusi, maupun tips dan trik
-        olimpiade matematika!
-      %a{:href => "https://ktom-tomi.or.id/book"}
-        = image_tag 'buku/buku4.jpg', alt: 'Buku KTOM 4',
-          class: 'img-buku-ktom img-responsive center-block'
+  %header#greeting
+    %h1 Halo, #{current_user}
 
-  .col-md-6.col-md-pull-6
-    %section.home-section#prev-contests
-      %h2 Kontes-kontes sebelumnya
-      Soal-soal kontes sebelumnya bisa diperoleh di sini!
-      - @prev_contests.each do |c|
-        %h5= link_to c.name, c
-      %p= link_to 'Daftar kontes', contests_path
+  %main
+    .row
+      .col-md-8
+        %section.home-section#this-contest
+          %h2#next-contest-name
+          %h3#next-contest-time
+          %a.btn.btn-lg.update-regularly#home-btn-daftar{ type: 'button', href: url_for(@next_important_contest) }
+        .row
+          .col-md-6.col-md-push-6
+            %section.home-section#info-kontes
+              %h2 Baru?
+              %p
+                #{link_to 'FAQ', faq_path} kami berisi banyak informasi mengenai
+                kontes-kontes kami.
+              %p
+                Anda juga bisa #{link_to 'membeli buku kami', book_path}
+                yang berisi kumpulan materi, soal, solusi, maupun tips dan trik
+                olimpiade matematika!
+              %a{:href => "https://ktom-tomi.or.id/book"}
+                = image_tag 'buku/buku4.jpg', alt: 'Buku KTOM 4',
+                  class: 'img-buku-ktom img-responsive center-block'
 
-.col-md-4
-  %section.home-section
-    %h2 Discord KTOM
-    %a{ href: 'https://bit.ly/discordKTOM' } Bergabunglah dengan server Discord KTOM!
+          .col-md-6.col-md-pull-6
+            %section.home-section#prev-contests
+              %h2 Kontes-kontes sebelumnya
+              Soal-soal kontes sebelumnya bisa diperoleh di sini!
+              - @prev_contests.each do |c|
+                %h5= link_to c.name, c
+              %p= link_to 'Daftar kontes', contests_path
 
-  %section.hidden-sm.hidden-xs#fb-box
-    .fb-page{ data: { href: 'https://www.facebook.com/KTOMatematika/', 'tabs' => 'messages,timeline', 'adapt-container-width' => 'true' } }
-      .fb-xfbml-parse-ignore
-        %blockquote{ cite: 'https://www.facebook.com/KTOMatematika/' }
-          %a{ href: 'https://www.facebook.com/KTOMatematika/', target: '_blank' }
-            Kontes Terbuka Olimpiade Matematika
+      .col-md-4
+        %section.home-section
+          %h2 Discord KTOM
+          %a{ href: 'https://bit.ly/discordKTOM' } Bergabunglah dengan server Discord KTOM!
 
-  %section.home-section#iklan-lomba
-    %h2 Kontes Tersponsori
-    %h3#judul-iklan
-    = image_tag 'sponsor.png', class: 'img-responsive center-block', id: 'img-promo-kontes'
-    %span#desc-iklan
+        %section.hidden-sm.hidden-xs#fb-box
+          .fb-page{ data: { href: 'https://www.facebook.com/KTOMatematika/', 'tabs' => 'messages,timeline', 'adapt-container-width' => 'true' } }
+            .fb-xfbml-parse-ignore
+              %blockquote{ cite: 'https://www.facebook.com/KTOMatematika/' }
+                %a{ href: 'https://www.facebook.com/KTOMatematika/', target: '_blank' }
+                  Kontes Terbuka Olimpiade Matematika
+
+        %section.home-section#iklan-lomba
+          %h2 Kontes Tersponsori
+          %h3#judul-iklan
+          = image_tag 'sponsor.png', class: 'img-responsive center-block', id: 'img-promo-kontes'
+          %span#desc-iklan
