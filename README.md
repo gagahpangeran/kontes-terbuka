@@ -88,17 +88,12 @@ diadaptasi dari [panduan instalasi untuk Ubuntu](https://github.com/rvm/ubuntu_r
     ```bash
     ruby --version
     ```
-5. Pasang `bundler`. Website KTOM sekarang berjalan dengan
-   bundler versi 1.17.3.
-   ```bash
-    gem install bundler -v 1.17.3
-    ```
-6. Dari dalam direktori repositori yang telah diunduh, jalankan
+5. Dari dalam direktori repositori yang telah diunduh, jalankan
     ```bash
     bundle install
     ```
    untuk meng-*install* gem-gem yang dibutuhkan.
-7. Setelah gem-gem yang diperlukan tersedia, Anda harus membuat dan memodifikasi
+6. Setelah gem-gem yang diperlukan tersedia, Anda harus membuat dan memodifikasi
     database untuk website ini:
     1. Buat *file* bernama `database.yml` dalam *folder* `config`. Anda bisa melihat *file*
     `database.yml.default` sebagai contoh.
@@ -110,12 +105,12 @@ diadaptasi dari [panduan instalasi untuk Ubuntu](https://github.com/rvm/ubuntu_r
         4. Keluar dari *shell* postgres dengan perintah `\q`
     3. Buat database dengan perintah `bundle exec rake db:setup`
     4. Jalankan semua migrasi dengan `bundle exec rake db:migrate`
-8. Buat `.env` file di root directory dan pindahkan isi dari `.env.default` kedalam `.env`. Setiap variabel di dalam `.env` diisi sesuai dengan yang dibutuhkan.
-9. *Setup* awal untuk menjalankan server selesai. Untuk menjalankan server lokal, gunakan
+7. Buat `.env` file di root directory dan pindahkan isi dari `.env.default` kedalam `.env`. Setiap variabel di dalam `.env` diisi sesuai dengan yang dibutuhkan.
+8. *Setup* awal untuk menjalankan server selesai. Untuk menjalankan server lokal, gunakan
     ```bash
     bundle exec rails s
     ```
-10. Sekarang, Anda bisa membuat *admin* di dalam website yang telah dibuat:
+9. Sekarang, Anda bisa membuat *admin* di dalam website yang telah dibuat:
     1. Dalam *browser*, buka alamat website versi lokal (*default*: `0.0.0.0:3000`)
     2. Buat akun seperti biasa
     3. Anda tidak akan mendapat email, dan harus mengaktivasi akun secara manual.
