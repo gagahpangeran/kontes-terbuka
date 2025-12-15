@@ -36,6 +36,7 @@ sudo apt install <nama paket>
 ```
 Untuk empat paket di atas:
 ```bash
+sudo apt update
 sudo apt install software-properties-common postgresql libpq-dev texlive nodejs
 ```
 
