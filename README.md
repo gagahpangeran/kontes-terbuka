@@ -23,18 +23,24 @@ bisa digunakan untuk menajalankan Ubuntu di dalam sistem operasi lain.
 ### Paket-paket prasyarat
 Mohon unduh dan *install* paket-paket di bawah ini sebelum memulai:
 1. `software-properties-common`, paket ini dipakai oleh beberapa paket di bawah
-2. `postgresql` untuk database
+2. `postgresql` dan `libpq-dev` untuk database
 3. `texlive` untuk menjalankan berbagai fungsi LaTeX yang diperlukan. 
    Kami menyarankan untuk memasang `texlive-full` yang mencakup keseluruhan texlive;
    kalau ruang disk Anda terbatas, `texlive-base` cukup memadai untuk sebagian besar
    pengolahan LaTeX yang diperlukan
+4. `nodejs` sebagai *runtime* JavaScript
 
-Anda bisa menggunakan `apt` untuk memasang paket-paket di atas dengan perintah 
+Anda bisa menggunakan `apt` untuk memasang paket-paket di atas dengan perintah
 ```bash
 sudo apt install <nama paket>
 ```
+Untuk empat paket di atas:
+```bash
+sudo apt install software-properties-common postgresql libpq-dev texlive nodejs
+```
 
 ### Cara setup
+Terakhir dites: 2025-12-15 (Ubuntu 20.04)
 1. Pastikan bahwa paket-paket di atas telah di-*install*
 2. Unduh semua *file* dalam repositori ini, menggunakan `git clone` atau dengan cara lainnya
 3. *Website* ini menggunakan `ruby`, dan untuk memudahkan manajemen versi `ruby` yang digunakan,
@@ -81,11 +87,9 @@ diadaptasi dari [panduan instalasi untuk Ubuntu](https://github.com/rvm/ubuntu_r
     ```bash
     ruby --version
     ```
-5. Pasang `bundler` dan `rails`. Website KTOM sekarang berjalan dengan
-   bundler bersi 1.17.3 dan rails versi 4.2.11.1, dan versi mutakhir dapat dilihat di
-   *file* **Gemfile** dan **Gemfile.lock**.
+5. Pasang `bundler`. Website KTOM sekarang berjalan dengan
+   bundler versi 1.17.3.
    ```bash
-    gem install rails -v 4.2.11.1
     gem install bundler -v 1.17.3
     ```
 6. Dari dalam direktori repositori yang telah diunduh, jalankan
@@ -99,10 +103,11 @@ diadaptasi dari [panduan instalasi untuk Ubuntu](https://github.com/rvm/ubuntu_r
     `database.yml.default` sebagai contoh.
     2. Buat *user* di postgres dengan *username* dan kata sandi yang tertera di `database.yml`.
     Untuk petunjuk di bawah, username yang digunakan adalah `ubuntu`, dan kata sandi yang digunakan adalah `password`
-        1. Jalankan perintah `sudo -u postgres psql` untuk masuk kedalam *shell* postgres.
+        1. Jalankan perintah `sudo -u postgres psql` untuk masuk kedalam *shell* postgres
         2. Buat *user* baru: `create user ubuntu with encrypted password 'password';`
         3. Jadikan user tersebut sebagai *superuser*: `alter user "ubuntu" with superuser;`
-    3. Buat databse dengan perintah `bundle exec rake db:setup`
+        4. Keluar dari *shell* postgres dengan perintah `\q`
+    3. Buat database dengan perintah `bundle exec rake db:setup`
     4. Jalankan semua migrasi dengan `bundle exec rake db:migrate`
 8. Buat `.env` file di root directory dan pindahkan isi dari `.env.default` kedalam `.env`. Setiap variabel di dalam `.env` diisi sesuai dengan yang dibutuhkan.
 9. *Setup* awal untuk menjalankan server selesai. Untuk menjalankan server lokal, gunakan
