@@ -18,7 +18,7 @@ berkembang hingga menjadi cukup besar.
 ## Panduan setup awal
 Catatan: panduan di bawah ini dibuat untuk Ubuntu 20.04 LTS. Untuk sistem operasi
 lainnya, pengaturan awal akan sedikit berbeda. [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-bisa digunakan untuk menajalankan Ubuntu di dalam sistem operasi lain.
+bisa digunakan untuk menjalankan Ubuntu di dalam sistem operasi lain.
 
 ### Paket-paket prasyarat
 Mohon unduh dan *install* paket-paket di bawah ini sebelum memulai:
