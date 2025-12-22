@@ -39,12 +39,17 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user_contests = UserContest.processed
-                                .joins(:contest).order(contest_id: :desc)
-                                .where(contest: { result_released: true },
-                                       user: @user)
-                                .paginate(page: params[:page_history])
-                                .to_a
+    # FIXME: very hacky workaround
+    # for some reason will_paginate is not compatible with squeel query inside UserContest.processed
+    user_contests_processed = UserContest.from("(#{UserContest.processed.to_sql}) AS user_contests")
+
+    # the workaround above make this query become N+1, just fix it later in the new codebase
+    @user_contests = user_contests_processed.joins(:contest).order(contest_id: :desc)
+                                            .where(contest: { result_released: true },
+                                                   user: @user)
+                                            .paginate(page: params[:page_history])
+                                            .to_a
+
     return unless can? :show_full, @user
 
     @point_transactions = PointTransaction.where(user: @user)
