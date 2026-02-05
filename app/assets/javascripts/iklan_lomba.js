@@ -1,5 +1,5 @@
-var iklan_title = 'Pemnas UB 2024';
-var iklan_desc = '';
+var iklan_title = 'Pemnas UB 2025';
+var iklan_desc = 'PEMNAS UB 2025 adalah lomba yang diadakan Universitas Brawijaya. Tahun ini, penyisihan akan diadakan 8 November 2025 dan semifinal-final pada tanggal 22-23 November 2025.';
 var iklan_link = 'https://pemnas.ub.ac.id/';
 
 $(document).on('turbolinks:load', function() {

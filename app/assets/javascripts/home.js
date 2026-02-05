@@ -19,19 +19,19 @@ function fill_home_text() {
         .data('results-released');
       title_text = next_important_contest.data('name');
 
-      if (results_released) {
+      if (results_released) { // Sudah diumumkan
         button_text = 'Hasil sudah diumumkan!';
-      } else if (current > results) {
+      } else if (current > results) { // Kontes selesai, belum diumumkan, lewat deadline
         subtitle_text = ' Dikarenakan berbagai halangan, hasil kontes' +
           ' belum keluar. Mohon maaf atas ketidaknyamannya dan' +
           ' mohon bersabar :(';
         $('#home-btn-daftar').hide();
-      } else if (current > end) {
+      } else if (current > end) { // Kontes selesai, belum diumumkan, belum lewat deadline
         // Show time to results
         subtitle_text = 'Hasil diumumkan paling telat ' +
             results.format_indo();
         button_text = current.indo_go_to(results);
-      } else {
+      } else { // Kontes belum selesai
         // Show time to next contest start
         var start = erb_to_date(next_important_contest.data(
               'start-time'));
@@ -39,9 +39,9 @@ function fill_home_text() {
         subtitle_text += ' \u2013 ';
         subtitle_text += end.format_indo();
 
-        if (start > current) {
+        if (start > current) { // Kontes belum dimulai
           button_text = current.indo_go_to(start);
-        } else {
+        } else { // Kontes sudah dimulai
           button_text = 'Kontes sudah dimulai!';
         }
       }

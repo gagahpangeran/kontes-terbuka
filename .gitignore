@@ -31,3 +31,4 @@ config/initializers/line_targets.rb
 # Others
 import/
 coverage/
+.vs/
