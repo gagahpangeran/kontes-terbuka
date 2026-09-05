@@ -40,11 +40,11 @@ class UsersController < ApplicationController
 
   def show
     @user_contests = UserContest.processed
-                                .joins(:contest).order(contest_id: :desc)
-                                .where(contest: { result_released: true },
-                                       user: @user)
-                                .paginate(page: params[:page_history])
-                                .to_a
+    @user_contests = @user_contests.joins(:contest)
+    @user_contests = @user_contests.order(contest_id: :desc)
+    @user_contests = @user_contests.where(contest: { result_released: true }, user: @user)
+    @user_contests = @user_contests.paginate(page: params[:page_history])
+    @user_contests = @user_contests.to_a
     return unless can? :show_full, @user
 
     @point_transactions = PointTransaction.where(user: @user)
