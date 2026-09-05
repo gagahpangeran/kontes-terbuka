@@ -40,11 +40,15 @@ class UsersController < ApplicationController
 
   def show
     @user_contests = UserContest.processed
+    Rails.logger.debug "user_contests 1: #{@user_contests.to_json}"
     @user_contests = @user_contests.joins(:contest)
+    Rails.logger.debug "user_contests 2: #{@user_contests.to_json}"
     @user_contests = @user_contests.order(contest_id: :desc)
+    Rails.logger.debug "user_contests 3: #{@user_contests.to_json}"
     @user_contests = @user_contests.where(contest: { result_released: true }, user: @user)
+    Rails.logger.debug "user_contests 4: #{@user_contests.to_json}"
     @user_contests = @user_contests.paginate(page: params[:page_history])
-    Rails.logger.debug "user_contests: #{@user_contests.to_json}"
+    Rails.logger.debug "user_contests 5: #{@user_contests.to_json}"
     @user_contests = @user_contests.to_a
     return unless can? :show_full, @user
 
