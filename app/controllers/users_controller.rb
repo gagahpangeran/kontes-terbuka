@@ -49,7 +49,6 @@ class UsersController < ApplicationController
                                                    user: @user)
                                             .paginate(page: params[:page_history])
                                             .to_a
-
     return unless can? :show_full, @user
 
     @point_transactions = PointTransaction.where(user: @user)
