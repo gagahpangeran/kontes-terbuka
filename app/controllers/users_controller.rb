@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     @user_contests = @user_contests.order(contest_id: :desc)
     @user_contests = @user_contests.where(contest: { result_released: true }, user: @user)
     @user_contests = @user_contests.paginate(page: params[:page_history])
-    Rails.logger.debug "user_contests: #{@user_contests}"
+    Rails.logger.debug "user_contests: #{@user_contests.to_json}"
     @user_contests = @user_contests.to_a
     return unless can? :show_full, @user
 
